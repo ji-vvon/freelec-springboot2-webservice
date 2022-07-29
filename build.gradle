@@ -1,0 +1,47 @@
+buildscript {
+    ext{ //build.gradle에서 사용하는 전역변수를 설정하겠다는 의미
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+//각종 의존성(라이브러리)들을 어떤 저장소에서 받을지를 정함
+repositories {
+    mavenCentral()
+    jcenter()
+}
+//의존성 코드는 직접 작성해도 되고, 자동완성으로 만들어도 된다
+// 단, 특정 버전을 명시하면 안된다. 그래야 맨 위에 작성한 저 버전을 따라가게 된다
+// 이렇게 관리할 경우 각 라이브러리들의 버전 관리가 한 곳에 집중되고,
+// 버전 충돌 문제도 해결되어 편하게 개발을 진행할 수 있다
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
