@@ -27,6 +27,7 @@ repositories {
 // 버전 충돌 문제도 해결되어 편하게 개발을 진행할 수 있다
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
